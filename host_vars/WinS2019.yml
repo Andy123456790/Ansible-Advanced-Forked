@@ -11,3 +11,15 @@ controller: "intern"
 
 #OU
 rootOU: "NPAfdelingen"
+
+# DHCP
+FQDN: "WinS2019.noorderpoort.intern"
+start_range: 192.168.150.50
+end_range: 192.168.150.200
+subnet: 255.255.255.0
+
+# DNS
+dynamic_update: secure
+replication: Forest
+network_id: 192.168.150.0/24
+zone: 150.168.192.in-addr.arpa  #het omgekeerde van je netwerk voorbeeld: 100.168.192.in-addr.arpa
