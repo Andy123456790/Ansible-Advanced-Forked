@@ -1,0 +1,11 @@
+- name: Voeg de DHCP server toe aan de list met authorized DHCP servers in de AD
+  ansible.windows.win_powershell:
+   script: |
+    Add-DhcpServerInDC -DnsName {{FQDN}} -IPAddress {{ansible_host}}
+
+- name: Maak de scope aan en bewerk het
+  ansible.windows.win_powershell:  
+    script: |
+      Add-DhcpServerv4Scope -Name "Noorderpoort netwerk" -StartRange {{start_range}} -EndRange {{end_range}} -SubnetMask {{subnet}}
+      Set-DhcpServerV4OptionValue -ComputerName {{inventory_hostname}} -DnsServer {{ansible_host}} -DnsDomain {{dns_domain_name}} -Router {{ansible_host}}
+      Restart-service dhcpserver
