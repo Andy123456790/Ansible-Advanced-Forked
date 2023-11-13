@@ -22,4 +22,5 @@ subnet: 255.255.255.0
 dynamic_update: secure
 replication: Forest
 network_id: 192.168.150.0/24
+pointer_name: x #laatste octet van je ip
 zone: 150.168.192.in-addr.arpa  #het omgekeerde van je netwerk voorbeeld: 100.168.192.in-addr.arpa
