@@ -1,6 +1,6 @@
 - name: "Include de user gegevens"
   ansible.builtin.include_vars:
-    file: ../../host_vars/domain_users.yml
+    file: host_vars/domain_users.yml
 
 - name: Voeg de gebruikers toe aan het domein.
   microsoft.ad.user:
