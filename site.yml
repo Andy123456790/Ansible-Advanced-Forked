@@ -37,6 +37,7 @@
   - { role: windows_updates, tags: [ 'updates']}
   - { role: windows_backup, tags: [ 'backup']}
   - { role: windows_restore, tags: [ 'restore']}
+  - { role: windows_wds, tags: [ 'wds']}
 
 - hosts: Werkstations
   gather_facts: true

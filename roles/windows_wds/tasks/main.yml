@@ -1,0 +1,26 @@
+- name: Capture Image of Workstation
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Install WDS Feature
+      win_feature:
+        name: WDS
+        state: present
+
+    - name: Configure WDS Server
+      win_wds_server:
+        state: present
+        install_image_server: yes
+        install_transport_server: yes
+
+    - name: Create Capture Image
+      win_wds_image:
+        name: WorkstationCapture
+        image_type: capture
+        architecture: x64
+        source_image: <source_image_name>
+        destination_image: <destination_image_name>
+        wds_server: localhost
+        wds_username: <wds_username>
+        wds_password: <wds_password>
