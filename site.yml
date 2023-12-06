@@ -10,7 +10,7 @@
   gather_facts: true
   become: true
   roles:
-  - { role: routers, tags: [ 'routers']}
+  - { role: routers_network, tags: [ 'network']}
 
 - hosts: switches
   gather_facts: true
