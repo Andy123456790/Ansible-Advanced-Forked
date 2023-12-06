@@ -1,0 +1,64 @@
+- name: Configure networks on Router 1
+  hosts: R1
+  tasks:
+    - name: Configure Gi0/1 network
+      ios_config:
+        lines:
+          - interface Gi0/1
+          - ip address {{ R1_Gi0/1_IP }} {{R1-Gi0/1_mask}}
+          - no shutdown
+
+    - name: no shutdown in Gi0/2
+      ios_config:
+        lines:
+          - interface Gi0/2
+          - no shutdown
+
+    - name: Configure Gi0/2 subinterface 1
+      ios_config:
+        lines:
+          - interface Gi0/2.10
+          - encapsulation dot1Q 10
+          - ip address {{ R1_Gi0/2.10_IP }} {{ R1_Gi0/2.10_mask }}
+
+    - name: Configure Gi0/2 subinterface 2
+      ios_config:
+        lines:
+          - interface Gi0/2.20
+          - encapsulation dot1Q 20
+          - ip address {{ R1_Gi0/2.20_IP }} {{ R1_Gi0/2.20_mask }}
+
+- name: Configure networks on Router 2
+  hosts: R2
+  tasks:
+    - name: Configure Gi0/1 network
+      ios_config:
+        lines:
+          - interface Gi0/1
+          - ip address {{ R2_Gi0/1_IP }} {{ R2_Gi0/1_mask }}
+          - no shutdown
+
+    - name: Configure Gi0/2 network
+      ios_config:
+        lines:
+          - interface Gi0/2
+          - ip address {{ R2_Gi0/2_IP }} {{ R2_Gi0/2_mask }}
+          - no shutdown
+
+- name: Configure networks on Router 3
+  hosts: R3
+  tasks:
+    - name: Configure Gi0/2 network
+      ios_config:
+        lines:
+          - interface Gi0/2
+          - ip address {{ R3_Gi0/2_IP }} {{ R3_Gi0/2_mask }}
+          - no shutdown
+
+    - name: Configure Gi0/1 network
+      ios_config:
+        lines:
+          - interface Gi0/1
+          - ip address {{ R3_Gi0/1_IP }} {{ R3_Gi0/1_mask }}
+          - no shutdown
+
